@@ -3,6 +3,8 @@ import {LuMapPin} from 'react-icons/lu';
 import Link from 'next/link';
 import React from 'react'
 import { CiCalendar } from 'react-icons/ci';
+import { Button } from '@heroui/react';
+import { FaExternalLinkAlt } from 'react-icons/fa';
 
 const DestinationsCard = ({ destination }) => {
 
@@ -22,16 +24,33 @@ const DestinationsCard = ({ destination }) => {
         />
 
         <div>
-          <div className='flex items-center gap-2'>
-            <LuMapPin className='text-red-500'/>
+          <div className="flex items-center gap-2">
+            <LuMapPin className="text-red-500" />
             <p>{country}</p>
           </div>
-          <div>
-            <h2 className='text-lg font-bold'>{destinationName}</h2>
+
+          <div className="flex justify-between">
+            <div>
+              <div>
+                <h2 className="text-lg font-bold">{destinationName}</h2>
+              </div>
+
+              <div className="flex items-center gap-2">
+                <CiCalendar />
+                {duration}
+              </div>
+            </div>
+
+            <div>
+              <h3 className="text-lg font-bold">${price}</h3>
+            </div>
           </div>
-          <div className='flex items-center gap-2'>
-            <CiCalendar/>
-            {duration}
+          <div className="flex justify-end">
+            <Link href={`/destinations/${destination._id}`}>
+              <Button variant="ghost" className={"text-cyan-500"}>
+                Book Now <FaExternalLinkAlt />
+              </Button>
+            </Link>
           </div>
         </div>
       </div>
