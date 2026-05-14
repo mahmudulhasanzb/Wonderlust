@@ -13,27 +13,26 @@ import {
 } from '@heroui/react';
 import { useRouter } from 'next/navigation';
 
-const SignUpPage = () => {
-
+const LogInPage = () => {
   const router = useRouter();
 
   const onSubmit = async e => {
     e.preventDefault();
+
     const formData = new FormData(e.currentTarget);
     const user = Object.fromEntries(formData.entries());
 
-    const { data, error } = await authClient.signUp.email({
+    const { data, error } = await authClient.signIn.email({
       email: user.email,
       password: user.password,
-      name: user.name,
-      image: user.image,
     });
 
     if (data) {
+      alert('Login successful');
       router.push('/');
     }
     if (error) {
-      console.log('Sign up error:', error.message);
+      alert('Sign up error:', error.message);
     }
   };
 
@@ -42,28 +41,16 @@ const SignUpPage = () => {
       <div className="w-full max-w-[450px]">
         <div className="text-center mb-10 space-y-2">
           <h1 className="text-4xl font-black tracking-tighter text-slate-900 dark:text-white">
-            Create Account
+            Log In
           </h1>
           <p className="text-slate-500 dark:text-slate-400">
-            Start your adventure with Wonderlust
+            Welcome back to Wonderlust
           </p>
         </div>
 
         <Card className="border-none shadow-2xl bg-white/80 dark:bg-zinc-900/80 backdrop-blur-xl rounded-[2rem] p-2">
           <div className="p-8">
             <Form className="flex flex-col gap-6" onSubmit={onSubmit}>
-              <TextField name="name" isRequired type="text">
-                <Label className="font-semibold ml-1 mb-1 block">
-                  Full Name
-                </Label>
-                <Input
-                  placeholder="Enter your name"
-                  className="rounded-xl border-slate-200 dark:border-zinc-800"
-                />
-
-                <FieldError className="text-xs text-red-500 mt-1" />
-              </TextField>
-
               <TextField
                 isRequired
                 name="email"
@@ -114,32 +101,13 @@ const SignUpPage = () => {
                 <FieldError className="text-xs text-red-500 mt-1" />
               </TextField>
 
-              <TextField name="image" type="url">
-                <Label className="font-semibold ml-1 mb-1 block">
-                  Image URL
-                </Label>
-                <Input
-                  placeholder="Enter your image URL"
-                  className="rounded-xl border-slate-200 dark:border-zinc-800"
-                />
-
-                <FieldError className="text-xs text-red-500 mt-1" />
-              </TextField>
-
               <div className="flex flex-col gap-3 mt-4">
                 <Button
                   type="submit"
                   className="w-full bg-cayan-500 hover:bg-cayan-600 dark:bg-white text-white dark:text-slate-900 font-bold h-12 rounded-xl hover:scale-[1.02] transition-transform active:scale-[0.98]"
                 >
                   <Check className="w-4 h-4 mr-1" />
-                  Sign Up
-                </Button>
-                <Button
-                  type="reset"
-                  variant="flat"
-                  className="w-full font-semibold h-12 rounded-xl text-slate-500 hover:bg-slate-100 dark:hover:bg-zinc-800 transition-colors"
-                >
-                  Reset
+                  Log In
                 </Button>
               </div>
             </Form>
@@ -150,4 +118,4 @@ const SignUpPage = () => {
   );
 };
 
-export default SignUpPage;
+export default LogInPage;
