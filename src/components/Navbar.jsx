@@ -1,10 +1,14 @@
 'use client';
 import { authClient } from '@/lib/auth-client';
+import { Button } from '@heroui/react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import React from 'react';
 
 const Navbar = () => {
+  const router = useRouter();
+
   const { data: session } = authClient.useSession();
   const user = session?.user;
   console.log('user from navbar ', user);
@@ -45,7 +49,17 @@ const Navbar = () => {
                   className="rounded-full border border-gray-300 hover:border-sky-600 hover:shadow-md hover:shadow-sky-300 transition-all duration-300"
                 />
               </Link>
-              <li className="font-bold">{user?.name}</li>
+              <li className="font-bold">
+                <Button
+                  variant="danger"
+                  onClick={async () => {
+                    await authClient.signOut();
+                    router.push('/login');
+                  }}
+                >
+                  Logout
+                </Button>
+              </li>
             </li>
           </>
         ) : (
