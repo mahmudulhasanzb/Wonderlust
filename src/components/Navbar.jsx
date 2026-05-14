@@ -38,7 +38,7 @@ const Navbar = () => {
         </li>
         <li>
           {' '}
-          <Link href="/sign-up">Sign Up</Link>{' '}
+          <Link href="/signup">Sign Up</Link>{' '}
         </li>
       </ul>
     </nav>
