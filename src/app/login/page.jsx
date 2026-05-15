@@ -38,10 +38,10 @@ const LogInPage = () => {
   };
 
   const handleGoogleSignIn = async () => {
-    const data = await authClient.signIn.social({
-      provider: "google",
-    })
-  }
+    await authClient.signIn.social({
+      provider: 'google',
+    });
+  };
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-6 bg-linear-to-br from-slate-50 to-slate-200 dark:from-zinc-950 dark:to-zinc-900">
@@ -69,7 +69,9 @@ const LogInPage = () => {
                   return null;
                 }}
               >
-                <Label className="font-semibold ml-1 mb-1 block text-sm">Email</Label>
+                <Label className="font-semibold ml-1 mb-1 block text-sm">
+                  Email
+                </Label>
                 <Input
                   placeholder="name@example.com"
                   className="rounded-2xl border-slate-200 dark:border-zinc-800 focus:ring-2 focus:ring-blue-500 transition-all h-12"
@@ -90,8 +92,9 @@ const LogInPage = () => {
                 }}
               >
                 <div className="flex justify-between items-center mb-1">
-                  <Label className="font-semibold ml-1 block text-sm">Password</Label>
-                 
+                  <Label className="font-semibold ml-1 block text-sm">
+                    Password
+                  </Label>
                 </div>
                 <Input
                   placeholder="••••••••"
@@ -114,7 +117,9 @@ const LogInPage = () => {
                 <span className="w-full border-t border-slate-200 dark:border-zinc-800"></span>
               </div>
               <div className="relative flex justify-center text-xs uppercase">
-                <span className="bg-white/0 px-2 text-slate-500 dark:text-zinc-500 font-medium">Or continue with</span>
+                <span className="bg-white/0 px-2 text-slate-500 dark:text-zinc-500 font-medium">
+                  Or continue with
+                </span>
               </div>
             </div>
 
@@ -125,16 +130,18 @@ const LogInPage = () => {
               hover:shadow-md
               dark:hover:bg-zinc-800/50 transition-shadow
               duration-300"
-              
             >
               <FaGoogle className="w-4 h-4 mr-2 " /> Google
             </Button>
           </div>
-          
+
           <div className="bg-slate-50/50 dark:bg-zinc-800/30 py-6 px-8 text-center border-t border-slate-100 dark:border-zinc-800/50">
             <p className="text-sm text-slate-500 dark:text-zinc-400">
               Don't have an account?{' '}
-              <a href="/signup" className="font-bold text-slate-900 dark:text-white hover:underline transition-all">
+              <a
+                href="/signup"
+                className="font-bold text-slate-900 dark:text-white hover:underline transition-all"
+              >
                 Sign up
               </a>
             </p>
