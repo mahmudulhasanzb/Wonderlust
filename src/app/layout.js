@@ -2,6 +2,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Josefin_Sans, Poppins } from "next/font/google";
+import { Toaster } from "react-hot-toast";
 
 const josefinSans = Josefin_Sans({
   subsets: ["latin"],
@@ -30,7 +31,8 @@ export default function RootLayout({ children }) {
         <main className="container mx-auto flex-1 px-6 md:px-10">
         {children}
         </main>
-        <Footer/>
+        <Footer />
+        <Toaster />
       </body>
     </html>
   );

@@ -11,7 +11,7 @@ const Navbar = () => {
 
   const { data: session } = authClient.useSession();
   const user = session?.user;
-  console.log('user from navbar ', user);
+
 
   return (
     <nav className="flex justify-between items-center px-10 py-4 bg-white shadow-lg">
@@ -36,11 +36,11 @@ const Navbar = () => {
         />
       </div>
 
-      <ul className="flex gap-3">
+      <ul className="flex items-center gap-4">
         {user ? (
           <>
-            <li className="flex items-center gap-2">
-              <Link href="/profile">
+            <li className="flex items-center gap-3">
+              <Link href="/profile" className="flex items-center transition-transform hover:scale-105">
                 <Image
                   src={user?.image}
                   width={50}
@@ -49,17 +49,17 @@ const Navbar = () => {
                   className="rounded-full border border-gray-300 hover:border-sky-600 hover:shadow-md hover:shadow-sky-300 transition-all duration-300"
                 />
               </Link>
+                </li>
               <li className="font-bold">
-                <Button
+              <Button
                   variant="danger"
-                  onClick={async () => {
-                    await authClient.signOut();
-                    router.push('/login');
-                  }}
-                >
-                  Logout
-                </Button>
-              </li>
+                onClick={async () => {
+                  await authClient.signOut();
+                  router.push('/login');
+                }}
+              >
+                Logout
+              </Button>
             </li>
           </>
         ) : (

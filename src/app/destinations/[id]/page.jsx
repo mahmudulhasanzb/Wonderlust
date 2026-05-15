@@ -1,3 +1,4 @@
+import BookingCard from '@/components/BookingCard';
 import { DeleteAlert } from '@/components/DeleteAlert';
 import { EditModal } from '@/components/EditModal';
 import { Button } from '@heroui/react';
@@ -30,11 +31,10 @@ const DestinationDetailPage = async ({ params }) => {
 
   return (
     <div className="max-w-7xl mx-auto">
-      <div className="flex  items-center gap-3 justify-end mt-5 mb-3"> 
+      <div className="flex  items-center gap-3 justify-end mt-5 mb-3">
         <EditModal destination={destination} />
         <DeleteAlert destination={destination} key={destination._id} />
       </div>
-
       <Image
         className="w-full h-100 object-cover rounded-2xl"
         alt={destinationName}
@@ -42,32 +42,31 @@ const DestinationDetailPage = async ({ params }) => {
         height={300}
         width={300}
       />
+      <div className='flex justify-between w-full'>
+        <div>
+          <div className="flex items-center gap-2">
+            <LuMapPin className="text-red-500" />
+            <p>{country}</p>
+          </div>
 
-      <div>
-        <div className="flex items-center gap-2">
-          <LuMapPin className="text-red-500" />
-          <p>{country}</p>
-        </div>
-
-        <div className="flex justify-between">
           <div>
             <div>
-              <h2 className="text-lg font-bold">{destinationName}</h2>
-            </div>
+              <div>
+                <h2 className="text-lg font-bold">{destinationName}</h2>
+              </div>
 
-            <div className="flex items-center gap-2">
-              <CiCalendar />
-              {duration}
+              <div className="flex items-center gap-2">
+                <CiCalendar />
+                {duration}
+              </div>
             </div>
           </div>
-
-          <div>
-            <h3 className="text-lg font-bold">${price}</h3>
-          </div>
+          <h1 className="text-2xl font-semibold">Overview</h1>
+          <p>{description}</p>
         </div>
-        <h1 className="text-2xl font-semibold">Overview</h1>
-        <p>{description}</p>
+        <BookingCard destination={destination} />
       </div>
+      
     </div>
   );
 };
